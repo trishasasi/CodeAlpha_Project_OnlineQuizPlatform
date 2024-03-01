@@ -1,0 +1,61 @@
+import java.util.Scanner;
+public class BankAppl {
+    private static double balance = 0;
+    private static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        boolean quit = false;
+        while (!quit) {
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    Deposit();
+                    break;
+                case 2:
+                    Withdraw();
+                    break;
+                case 3:
+                    CheckBalance();
+                    break;
+                case 4:
+                    quit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again!");
+                    break;
+            }
+        }
+        scanner.close();
+        System.out.println("Thank you for choosing our banking services!");
+    }
+
+    private static void Deposit() {
+        System.out.print("Enter Amount to Deposit: ");
+        double amount = scanner.nextDouble();
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposit successful. New balance: " + balance);
+        } else {
+            System.out.println("Invalid Amount. Please try again!");
+        }
+    }
+
+    private static void Withdraw() {
+        System.out.print("Enter Amount to Withdraw: ");
+        double amount = scanner.nextDouble();
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawal successful. New balance: " + balance);
+        } else {
+            System.out.println("Invalid Amount or Insufficient Funds. Please try again!");
+        }
+    }
+
+    private static void CheckBalance() {
+        System.out.println("Current balance: " + balance);
+    }
+}
